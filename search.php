@@ -1,5 +1,8 @@
 <?php
 	require 'database.php';
+	@$card = $_GET['card'];		//Consertar
+	if(!$card) $card = "Garfield";
+	$clientes = DBLike("Nname", $card);
 ?>
 <html>
 <head>
@@ -13,14 +16,17 @@
 	<form action="search.php" method="get">
 		<input type="text" name="card">
 		<input type="submit">
+		<span><?php
+		echo count($clientes)." resultados";
+		?></span>
 	</form>
 	<table>
 	<?php
 		//$clientes = DBRead('ncards','where Npower > 10', 'Nname');
-		$clientes = DBPureQuery("SELECT Nname, Nset, Npower FROM Ncards where Npower > 10");
+		
 		
 		echo "<tr>";
-		foreach ($clientes[1] as $key => $value) echo "<th>".$key."</th>";
+		foreach ($clientes[0] as $key => $value) echo "<th>".$key."</th>";
 		echo "</tr>";
 
 		for ($i=0; $i < count($clientes); $i++) { 
@@ -33,5 +39,6 @@
 		//var_dump($clientes);
 	?>
 	</table>
+
 </body>
 </html>

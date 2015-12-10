@@ -18,6 +18,22 @@
 		}
 	}
 
+	function DBLike($fields, $name){ //Pesquisa Like
+
+		$query = "SELECT {$fields} FROM Ncards WHERE Nname LIKE '%$name%'";
+		$result = DBExecute($query);
+
+		if(!mysqli_num_rows($result))
+			return false;
+		else {
+			while ($res = mysqli_fetch_assoc($result)){
+				$data[] = $res;
+			}
+
+			return $data;
+		}
+	}
+
 	function DBPureQuery($query){	//Pesquisa Manual
 		$query = DBProtect($query);	
 		$result = DBExecute($query);
