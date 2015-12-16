@@ -20,7 +20,21 @@
 		<input type="text" name="nome" id="nome">
 		<input type="submit" id="subb">
 	</form>
-	<div id="cont"></div>
+	<div>
+		<table id="cont">
+			<?php
+				$users = DBPureQuery("SELECT nome FROM usuarios");
+
+				for ($i=0; $i < count($users); $i++) { 
+					echo "<tr>";
+					foreach ($users[$i] as $key => $value) {
+						echo "<td>".$value."</td>";
+					}
+					echo "</tr>";
+				}
+			?>
+		</table>
+	</div>
 	<table>
 	<?php
 		//$clientes = DBRead('ncards','where Npower > 10', 'Nname');

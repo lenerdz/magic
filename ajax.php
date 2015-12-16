@@ -5,7 +5,7 @@
 
 	$data = array('nome' => $nome );
 
-	$resultado = DBCreate("usuario", $data);
+	$resultado = DBCreate("usuarios", $data);
 
 	echo $resultado;
 ?>

@@ -3,6 +3,19 @@
 	@$card = $_GET['card'];		//Consertar
 	if(!$card) $card = "Garfield";
 	$clientes = DBLike("Nname, Nset", $card);
+
+	//FUNÇÃO PARA DESTACAR BUSCA NO NOME
+	function destacar($nome){
+		@$card = $_GET['card'];
+		$pos = stripos($nome, $card);
+		$nome = substr_replace($nome, '</span>', $pos+3, 0);
+		$nomedestacado = substr_replace($nome, '<span style="background-color: yellow;">', $pos, 0);
+		
+
+		return $nomedestacado;
+	}
+
+	//FUNÇÃO PARA CALCULAR O VALOR DE CADA CARD
 ?>
 <html>
 <head>
@@ -12,7 +25,7 @@
         tr:hover{
             background-color: rgba(178, 255, 148, 0.500);
         }
-        td>span {
+        td>span.cardimg {
             position: absolute;
             background-color: lightyellow;
             padding: 5px;
@@ -22,7 +35,7 @@
             color: black;
             text-decoration: none;
         }
-        td:hover>span {
+        td:hover>span.cardimg {
             visibility: visible;
             //top: 0;
             left: 0;
@@ -45,13 +58,16 @@
 		
 		echo "<tr>";
 		foreach ($clientes[0] as $key => $value) echo "<th>".$key."</th>";
+		echo "<th>Valor</th>";
 		echo "</tr>";
 
 		for ($i=0; $i < count($clientes); $i++) { 
 			echo "<tr>";
 			foreach ($clientes[$i] as $key => $value) {
 				$nome = str_replace(' ', '', $value);
-				echo "<td>".$value."<span><img src=\"http://static.starcitygames.com/sales/cardscans/MTG/JUD/en/nonfoil/TestOfEndurance.jpg\"</span></td>";
+				if($key == 'Nname') echo "<td>".destacar($value)."<span class='cardimg'><img src=\"http://static.starcitygames.com/sales/cardscans/MTG/JUD/en/nonfoil/TestOfEndurance.jpg\"</span></td>";
+				else echo "<td>$value</td>";
+				if($key == 'Nset') echo "<td>valor</td>";
 			}
 			echo "</tr>";
 		}

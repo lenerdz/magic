@@ -10,7 +10,11 @@ $(document).ready(function() {
     		alert( "error");
   		  })
 		  .done(function( msg ) {
-		    alert( "Data Saved: " + msg );
+		  	if (msg==1) {
+		  		$("#cont").append('<tr><td>'+dado.val()+'</td></tr>');
+		  		$("#formulario").trigger('reset');
+		  	}else alert( "Data Error: " + msg );
+		    
 		  });
 	});
 
