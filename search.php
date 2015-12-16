@@ -2,13 +2,13 @@
 	require 'database.php';
 	@$card = $_GET['card'];		//Consertar
 	if(!$card) $card = "Garfield";
-	$clientes = DBLike("Nname, Nset", $card);
+	$clientes = DBLike("Nname_PT, Nname, Nset", $card);
 
 	//FUNÇÃO PARA DESTACAR BUSCA NO NOME
 	function destacar($nome){
 		@$card = $_GET['card'];
 		$pos = stripos($nome, $card);
-		$nome = substr_replace($nome, '</span>', $pos+3, 0);
+		$nome = substr_replace($nome, '</span>', $pos+strlen($card), 0);
 		$nomedestacado = substr_replace($nome, '<span style="background-color: yellow;">', $pos, 0);
 		
 
