@@ -5,6 +5,8 @@
 <head>
 	<title>Teste de Conexão MySQLi</title>
 	<meta charset="utf-8">
+	<script src="jquery-2.1.4.min.js"></script>
+	<script src="functions.js"></script>
 	<style>
 
 	</style>
@@ -14,6 +16,11 @@
 		<input type="text" name="card">
 		<input type="submit">
 	</form>
+	<form method="post" id="formulario">
+		<input type="text" name="nome" id="nome">
+		<input type="submit" id="subb">
+	</form>
+	<div id="cont"></div>
 	<table>
 	<?php
 		//$clientes = DBRead('ncards','where Npower > 10', 'Nname');

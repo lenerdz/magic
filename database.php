@@ -57,7 +57,7 @@
 
 		$query = "INSERT INTO {$table} ( {$fields} ) VALUES ( {$values} )";
 
-		return $query;
+		return DBExecute($query);
 	}
 
 	function DBExecute($query){	//Executa uma query
